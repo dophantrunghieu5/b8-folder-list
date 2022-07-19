@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { folderService } from "../services"; 
+import { Loading } from "../components";
 
 const initialState = {
     currentFolder: null,
@@ -11,7 +12,7 @@ const folderCtx = createContext(initialState);
 
 const FolderContext = ({ children }) => {
     const [currentFolder, setCurrentFolder] = useState();
-    const [initialzed, setInitialzed] = useState(false);
+    const [initialized, setInitialized] = useState(false);
 
     const openFolder = (parentId) => {
         const folder = folderService.getFolderById(parentId);
@@ -19,8 +20,8 @@ const FolderContext = ({ children }) => {
     };
     
     useEffect(async () => {
-        const initialzed = await folderService.initialize();
-        setInitialzed(initialzed);
+        const initialized = await folderService.initialize();
+        setInitialized(initialized);
     }, []);
 
     return (
@@ -29,8 +30,9 @@ const FolderContext = ({ children }) => {
                 openFolder,
                 currentFolder
             }}
-        >
-            {initialzed && children}
+        >   
+            {initialized && children}
+            {!initialized && <Loading />}
         </folderCtx.Provider>
     );
 };

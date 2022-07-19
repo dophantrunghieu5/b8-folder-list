@@ -1,16 +1,20 @@
-import { Card } from "antd";
-import { FolderOutlined } from "@ant-design/icons";
+import { Card, Space } from "antd";
+import { FolderFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const Folder = ({item}) => {
     return <>
         <Card>
             <Link to={`/folder/${item.id}`}>
-                <FolderOutlined />
-                {item.name}
+                <Space size="small">
+                    <FolderFilled style={{ fontSize: '24px', color: '#08c' }} />
+                    {item.name}
+                </Space>
             </Link>
         </Card>
     </>
 }
 
-export default Folder;
+export {
+    Folder
+};

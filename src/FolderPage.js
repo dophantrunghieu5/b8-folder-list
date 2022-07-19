@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Layout } from 'antd';
 import { useParams } from "react-router-dom";
-import Breadcrumb from './components/Breadcrumb';
-import FolderList from './components/FolderList';
+import { Breadcrumb, FolderList } from './components';
 import { FolderState } from './context';
-const { Header, Footer, Sider, Content } = Layout;
+import { Space } from 'antd';
 
 const FolderPage = () => {
   const { id } = useParams();
@@ -16,12 +14,12 @@ const FolderPage = () => {
   }, [id]);
 
   return (
-    <Layout>
-      <Content>
+    <>
+      <Space size="small" direction="vertical" style={{width: '100%'}}>
         <Breadcrumb paths={paths} />
         <FolderList folders={folders} />
-      </Content>
-    </Layout>
+      </Space>
+    </>
   );
 };
 

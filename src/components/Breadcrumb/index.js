@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 const Breadcrumb = ({paths = []}) => {
     return <>
         <AntBreadcrumb>
-            <AntBreadcrumb.Item>
-                <Link to="/">Home</Link>
-            </AntBreadcrumb.Item>
             {paths.map(path => {
-                return <AntBreadcrumb.Item>
+                return <AntBreadcrumb.Item key={path.id}>
                     <Link to={`/folder/${path.id}`}>{path.name}</Link>
                 </AntBreadcrumb.Item>
             })}
@@ -16,4 +13,6 @@ const Breadcrumb = ({paths = []}) => {
     </>
 }
 
-export default Breadcrumb;
+export { 
+    Breadcrumb 
+};

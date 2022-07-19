@@ -1,5 +1,5 @@
 import { List } from "antd";
-import Folder from '../Folder';
+import { Folder } from '../Folder';
 
 const FolderList = ({folders = []}) => {
     return <>
@@ -15,4 +15,6 @@ const FolderList = ({folders = []}) => {
     </>
 }
 
-export default FolderList;
+export {
+    FolderList
+}

@@ -21,26 +21,34 @@
  */
 
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import FolderPage from "./FolderPage";
 import { FolderContext } from './context';
+import { Layout, PageHeader } from 'antd';
+const { Content } = Layout;
+
 import "antd/dist/antd.css";
 
 const App = () => (
   <FolderContext>
-    <Router>
-      <div>
-        <h1>Folder Explorer</h1>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <Link to="/folder/0">~/</Link>}
-          />
-          <Route path="/folder/:id" component={FolderPage} />
-        </Switch>
-      </div>
-    </Router>
+    <Layout>
+      <PageHeader
+        className="site-page-header"
+        title="Folder Explorer"
+      />
+      <Content className="site-layout" style={{ padding: '0 24px' }}>
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => <Redirect to="/folder/0" />}
+            />
+            <Route path="/folder/:id" component={FolderPage} />
+          </Switch>
+        </Router>
+      </Content>
+    </Layout>
   </FolderContext>
 );
 const rootElement = document.getElementById("root");
