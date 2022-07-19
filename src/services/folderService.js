@@ -40,7 +40,7 @@ const FolderService = () => {
     }
 }
 
-const folderService = new FolderService();
+const folderService = FolderService();
 export {
     folderService
 }; 
