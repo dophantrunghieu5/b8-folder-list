@@ -23,22 +23,25 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import FolderPage from "./FolderPage";
+import { FolderContext } from './context';
 import "antd/dist/antd.css";
 
 const App = () => (
-  <Router>
-    <div>
-      <h1>Hello</h1>
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <Link to="/folder/0">folder</Link>}
-        />
-        <Route path="/folder/:id" component={FolderPage} />
-      </Switch>
-    </div>
-  </Router>
+  <FolderContext>
+    <Router>
+      <div>
+        <h1>Folder Explorer</h1>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => <Link to="/folder/0">~/</Link>}
+          />
+          <Route path="/folder/:id" component={FolderPage} />
+        </Switch>
+      </div>
+    </Router>
+  </FolderContext>
 );
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);

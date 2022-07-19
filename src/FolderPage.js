@@ -1,44 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Breadcrumb, List, Card } from "antd";
-import { Link } from "react-router-dom";
-import getFolders from "./getFolders";
-import { FolderOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import { Layout } from 'antd';
+import { useParams } from "react-router-dom";
+import Breadcrumb from './components/Breadcrumb';
+import FolderList from './components/FolderList';
+import { FolderState } from './context';
+const { Header, Footer, Sider, Content } = Layout;
 
 const FolderPage = () => {
-  const [state, setState] = useState({});
+  const { id } = useParams();
+  const { currentFolder, openFolder } = FolderState();
+  const { paths = [], children: folders = [] } = currentFolder || {};
 
   useEffect(() => {
-    getFolders().then(setState);
-  }, []);
+    id && openFolder(Number(id));
+  }, [id]);
 
-  const data = state.children;
   return (
-    <div>
-      <div>
-        <Breadcrumb>
-          <Breadcrumb.Item>
-            <Link to="/">Home</Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>{state.name}</Breadcrumb.Item>
-        </Breadcrumb>
-      </div>
-      <div>
-        <List
-          grid={{ gutter: 16, column: 4 }}
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item>
-              <Card>
-                <Link to={`/folder/${item.id}`}>
-                  <FolderOutlined />
-                  {item.name}
-                </Link>
-              </Card>
-            </List.Item>
-          )}
-        />
-      </div>
-    </div>
+    <Layout>
+      <Content>
+        <Breadcrumb paths={paths} />
+        <FolderList folders={folders} />
+      </Content>
+    </Layout>
   );
 };
 
