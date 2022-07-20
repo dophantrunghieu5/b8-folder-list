@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Breadcrumb, FolderList } from './components';
-import { FolderState } from './context';
+import { Breadcrumb, FolderList } from '../components';
+import { FolderState } from '../context';
 import { Space } from 'antd';
 
 const FolderPage = () => {

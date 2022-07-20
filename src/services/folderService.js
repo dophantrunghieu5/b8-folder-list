@@ -1,4 +1,4 @@
-import getFolders from "../getFolders";
+import getFolders from "./getFolders";
 
 const FolderService = () => {
     let database;

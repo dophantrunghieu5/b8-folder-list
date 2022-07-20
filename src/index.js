@@ -22,7 +22,7 @@
 
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import FolderPage from "./FolderPage";
+import FolderPage from "./pages/FolderPage";
 import { FolderContext } from './context';
 import { Layout, PageHeader } from 'antd';
 const { Content } = Layout;
