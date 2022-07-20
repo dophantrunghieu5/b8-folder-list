@@ -2,16 +2,16 @@ import { Card, Space } from "antd";
 import { FolderFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const Folder = ({item}) => {
+const Folder = ({ item }) => {
     return <>
-        <Card>
-            <Link to={`/folder/${item.id}`}>
+        <Link to={`/folder/${item.id}`}>
+            <Card>
                 <Space size="small">
                     <FolderFilled style={{ fontSize: '24px', color: '#08c' }} />
                     {item.name}
                 </Space>
-            </Link>
-        </Card>
+            </Card>
+        </Link>
     </>
 }
 
